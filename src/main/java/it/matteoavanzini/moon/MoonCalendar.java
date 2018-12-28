@@ -3,7 +3,18 @@ package it.matteoavanzini.moon;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Moon implements IMoon {
+/**
+ * An implementation of LunarCalendar interface.
+ *
+ * it calculates the calendar moon's day in days, using the formula:
+ *
+ *      day = day of month + number of month + epatta
+ *
+ * 'epatta' is a special number that helps to correct the calcule of lunar day.
+ *
+ *  A Lunar month has the duration of 30 days all over the year, but every 19 years it needs a +1 day correction
+ * */
+public class MoonCalendar implements LunarCalendar {
 
     private int EPATTA_2014 = 29;
 
@@ -58,7 +69,7 @@ public class Moon implements IMoon {
     @Override
     public int getMoonDay(Date date) {
         int day = getMonthDay(date) + capomese(date) + epatta(date);
-        if (day > 30) day -= 30;
+        if (day >= 30) day -= 30;
         return day;
     }
 
@@ -83,13 +94,23 @@ public class Moon implements IMoon {
     @Override
     public MOON_PHASE getLunarPhase(Date date) {
         int day = getMoonDay(date);
-        MOON_PHASE phase = MOON_PHASE.WANING;
-        if (day == 30) {
+        MOON_PHASE phase = null;
+        if (day == 0) {
             phase = MOON_PHASE.NEW;
-        } else if (day > 0 && day < 15) {
-            phase = MOON_PHASE.WAXING;
+        } else if (day > 0 && day < 6) {
+            phase = MOON_PHASE.WAXING_TO_QUARTER;
+        } else if (day == 7) {
+            phase = MOON_PHASE.FIRST_QUARTER;
+        } else if (day > 7 && day < 14) {
+            phase = MOON_PHASE.WAXING_TO_FULL;
         } else if (day == 15) {
             phase = MOON_PHASE.FULL;
+        } else if (day > 15 && day < 22) {
+            phase = MOON_PHASE.WANING_TO_QUARTER;
+        } else if (day == 22) {
+            phase = MOON_PHASE.SECOND_QUARTER;
+        } else if (day > 22 && day < 30) {
+            phase = MOON_PHASE.WANING_TO_NEW;
         }
         return phase;
     }

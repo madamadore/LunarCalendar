@@ -3,7 +3,10 @@ plugins {
 }
 
 group 'it.matteoavanzini'
-version '1.0-SNAPSHOT'
+artifacts {
+    archives moon
+}
+version '0.0.1 - Apollo'
 
 sourceCompatibility = 1.8
 
