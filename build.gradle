@@ -3,9 +3,6 @@ plugins {
 }
 
 group 'it.matteoavanzini'
-artifacts {
-    archives moon
-}
 version '0.0.1 - Apollo'
 
 sourceCompatibility = 1.8
@@ -15,5 +12,5 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
 }

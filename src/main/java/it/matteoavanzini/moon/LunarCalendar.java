@@ -30,7 +30,7 @@ public interface LunarCalendar
                         WAXING_TO_FULL,
                     FULL,
                         WANING_TO_QUARTER,
-                        SECOND_QUARTER,
+                        LAST_QUARTER,
                         WANING_TO_NEW }
 
     /**
