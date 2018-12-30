@@ -19,7 +19,7 @@ The **LunarCalendar** interface defines two main methods:
 In `src/resource/images` there are 8 SVG images representing the 8 phase of the moon 
 
 Usage
-=====
+-----
 ```
     Date now = Calendar.getInstace.getTime();
     LunarCalendar calendar = new Moon()
@@ -37,5 +37,5 @@ or
 ```
 
 License
-=======
+-------
 GPL. See _license_ file
