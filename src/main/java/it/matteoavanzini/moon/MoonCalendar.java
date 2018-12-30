@@ -87,14 +87,15 @@ public class MoonCalendar implements LunarCalendar {
     @Override
     public int getMoonDay(Date date) {
         int day = getMonthDay(date) + capomese(date) + epatta(date);
-        if (day >= 30) day -= 30;
+        day = day % 30;
+        day += 1;
         return day;
     }
 
     @Override
     public boolean isWaxing(Date date) {
         int day = getMoonDay(date);
-        if (day > 0 && day < 15) {
+        if (day > 0 && day < 16) {
             return true;
         }
         return false;
